@@ -1,0 +1,45 @@
+@arrowSize: 4px;
+@arrowPad: 4px;
+@arrowGap: 1px;
+.hso-arrow-order {
+    position: relative;
+    cursor: pointer;
+    padding-right: (@arrowSize + @arrowPad)*2;
+    &:before,
+    &:after {
+        content: '';
+        border: @arrowSize solid #2F3238;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        right: @arrowPad;
+        position: absolute;
+    }
+    &:before {
+        border-top-color: transparent;
+        bottom: 50%;
+        margin-bottom: @arrowGap;
+    }
+    &:after {
+        border-bottom-color: transparent;
+        top: 50%;
+        margin-top: @arrowGap;
+    }
+    &.asc {
+        &:before {
+            bottom: 50%;
+            margin-bottom: -@arrowSize/2;
+        }
+        &:after {
+            display: none;
+        }
+    }
+    &.desc {
+        &:before {
+            display: none;
+        }
+        &:after {
+            top: 50%;
+            margin-top: -@arrowSize/2;
+        }
+    }
+}

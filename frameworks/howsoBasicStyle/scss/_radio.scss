@@ -1,0 +1,9 @@
+input[type=radio]{
+    -webkit-appearance: none;
+    outline: none;
+    font-size: 1rem;
+    color: $gray-600;
+    &:checked{
+        color: $primary;
+    }
+}

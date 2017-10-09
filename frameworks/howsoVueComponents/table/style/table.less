@@ -1,0 +1,112 @@
+@import './check.less';
+@import "./arrow.less";
+@import "./detail.less";
+@wrap-bd-color: #dddee1; //外边框色
+@table-bd-color: #e9eaec; //表格内部边框色
+@head-bg-color: #f8f8f9; //表头背景色
+@stripe-bg-color: #f8f8f9; //斑马纹色
+@hover-bg-color: #ebf7ff; //鼠标悬浮色
+//表头tr高度
+.head-tr-height() {
+    .small {
+        height: 32px;
+    }
+    .default {
+        height: 40px;
+    }
+    .large {
+        height: 48px;
+    }
+}
+
+//表体tr高度
+.body-tr-height() {
+    .small {
+        height: 40px;
+    }
+    .default {
+        height: 48px;
+    }
+    .large {
+        height: 56px;
+    }
+}
+
+.hso-table-wrapper {
+    * {
+        box-sizing: border-box;
+    }
+    position: relative;
+    border: 1px solid @wrap-bd-color;
+    border-bottom: 0;
+    border-right: 0;
+}
+
+.hso-table {
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        background-color: @wrap-bd-color;
+        z-index: 1;
+    }
+    &:before {
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 0;
+    }
+    &:after {
+        width: 1px;
+        height: 100%;
+        top: 0;
+        right: 0;
+    }
+    table {
+        table-layout: fixed;
+        th,td{text-align: center;}
+    }
+    &-border {
+        th,
+        td {
+            border-right: 1px solid @table-bd-color;
+        }
+    }
+    &-stripe .hso-table-body tr:nth-child(even) {
+        background-color: @stripe-bg-color;
+    }
+}
+
+.hso-table-header {
+    background-color: @head-bg-color;
+    border-bottom: 1px solid @table-bd-color;
+    tr {
+        .head-tr-height.default;
+        .hso-table-small & {
+            .head-tr-height.small;
+        }
+        .hso-table-large & {
+            .head-tr-height.large;
+        }
+    }
+}
+
+.hso-table-body {
+    tr {
+        transition: background-color 0.2s ease-in-out;
+        border-bottom: 1px solid @table-bd-color;
+        &:hover {
+            background-color: @hover-bg-color;
+        }
+        .body-tr-height.default;
+        .hso-table-small & {
+            .body-tr-height.small;
+        }
+        .hso-table-large & {
+            .body-tr-height.large;
+        }
+    }
+}
